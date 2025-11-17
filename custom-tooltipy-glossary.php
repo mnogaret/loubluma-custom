@@ -121,7 +121,7 @@ function custom_tooltipy_glossary( $atts ) {
 
     $q = new WP_Query( $args );
 
-    echo '<div class="custom_glossary_content">';
+    echo '<div class="custom_glossary_content" style="margin-top: 20px;">';
 
     if ( ! $q->have_posts() ) {
         echo '<p>Aucun terme trouvé.</p>';
@@ -140,7 +140,7 @@ function custom_tooltipy_glossary( $atts ) {
 
             echo '<h2 class="glossary_element_title">';
 
-            echo '<span class="tooltipy">' . esc_html( $post_title ) . '</span>';
+            echo '<span class="no-tooltipy">' . esc_html( $post_title ) . '</span>';
 
             if ( current_user_can( 'edit_post', $post_id ) ) {
                 $edit_link = get_edit_post_link( $post_id );
