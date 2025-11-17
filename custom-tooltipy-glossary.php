@@ -121,7 +121,7 @@ function custom_tooltipy_glossary( $atts ) {
 
     $q = new WP_Query( $args );
 
-    echo '<div class="kttg_glossary_content">';
+    echo '<div class="custom_glossary_content">';
 
     if ( ! $q->have_posts() ) {
         echo '<p>Aucun terme trouvé.</p>';
