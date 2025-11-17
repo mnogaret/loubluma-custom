@@ -53,9 +53,6 @@ function custom_tooltipy_glossary( $atts ) {
             'field'    => 'slug',
             'terms'    => $terms,
         ] ];
-        echo '<p>';
-        print_r(	$terms );
-        echo '</p>';
     }
 
     $current_letter_class = '';
