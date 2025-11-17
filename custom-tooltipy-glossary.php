@@ -38,24 +38,24 @@ function custom_tooltipy_glossary( $atts ) {
         'custom_tooltipy_glossary'
     );
 
-    $glossary_options = get_option( 'bluet_glossary_options' );
+//    $glossary_options = get_option( 'bluet_glossary_options' );
 
-    if ( !empty( $glossary_options['kttg_glossary_text']['kttg_glossary_text_all'] ) and $glossary_options['kttg_glossary_text']['kttg_glossary_text_all'] != "" ) {
-        $text_all = $glossary_options['kttg_glossary_text']['kttg_glossary_text_all'];
-    } else {
-        $text_all = __('ALL','tooltipy-lang');
-    }
+//    if ( !empty( $glossary_options['kttg_glossary_text']['kttg_glossary_text_all'] ) and $glossary_options['kttg_glossary_text']['kttg_glossary_text_all'] != "" ) {
+//        $text_all = $glossary_options['kttg_glossary_text']['kttg_glossary_text_all'];
+//    } else {
+//        $text_all = __('ALL','tooltipy-lang');
+//    }
 
-    $current_letter_class = '';
-    if ( empty ( $_GET['letter'] ) ) {
-        $current_letter_class = 'bluet_glossary_current_letter';
-    }
+//    $current_letter_class = '';
+//    if ( empty ( $_GET['letter'] ) ) {
+//        $current_letter_class = 'bluet_glossary_current_letter';
+//    }
 
-    $all_link = get_permalink();
+//    $all_link = get_permalink();
 
-    $ret = "<div class='kttg_glossary_div'>";
+//    $ret = "<div class='kttg_glossary_div'>";
 
-    $ret. = '<div class="kttg_glossary_header"><span class="bluet_glossary_all ' . $current_letter_class . '"><a href=\'' . $all_link . '\'>' . $text_all . '</a></span> - ';
+//    $ret. = '<div class="kttg_glossary_header"><span class="bluet_glossary_all ' . $current_letter_class . '"><a href=\'' . $all_link . '\'>' . $text_all . '</a></span> - ';
 
     $args = [
         'post_type'      => 'my_keywords',
