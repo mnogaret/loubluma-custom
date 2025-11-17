@@ -73,14 +73,16 @@ function custom_tooltipy_glossary( $atts ) {
 
 	echo '<dt id="glossary-' . esc_attr( $slug ) . '">';
 
-	echo '<h2 class="kktg_glossary_element">'
-           . esc_html( get_the_title() )
-	   . '</h2>';
+	echo '<h2 class="glossary_element_title">';
+
+	echo '<span class="no-tooltipy">' . esc_html( get_the_title() ) . '</span>';
 
 	if ( current_user_can( 'edit_post', $post_id ) ) {
 		$edit_link = get_edit_post_link( $post_id );
 		echo ' (<a href="' . esc_url( $edit_link ) . '">modifier</a>)';
 	}
+
+	echo '</h2>';
 
 	echo '</dt>';
 
