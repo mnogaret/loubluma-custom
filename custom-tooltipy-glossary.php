@@ -124,6 +124,8 @@ function custom_tooltipy_glossary( $atts ) {
 
     $q = new WP_Query( $args );
 
+    echo '<div class="kttg_glossary_content">';
+
     if ( ! $q->have_posts() ) {
         echo '<p>Aucun terme trouvé.</p>';
     }
@@ -157,6 +159,7 @@ function custom_tooltipy_glossary( $atts ) {
     }
 
     echo '</dl>';
+    echo '</div>';
     wp_reset_postdata();
 
     echo '</div>';
