@@ -6,6 +6,8 @@
  * Version: 0.1.0
  */
 
+require __DIR__ . '/functions.php';
+
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
