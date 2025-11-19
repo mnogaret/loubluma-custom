@@ -27,6 +27,15 @@ add_action( 'init', function() {
     );
 });
 
+function get_first_letter( $str ) {
+    $first = mb_substr( $str, 0, 1, 'UTF-8' );
+    $ascii = iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $first );
+    if ( $ascii === false ) {
+        $ascii = $first;
+    }
+    return strtoupper( $ascii );
+}
+
 function custom_tooltipy_glossary( $atts ) {
     $atts = shortcode_atts(
         [
@@ -90,7 +99,7 @@ function custom_tooltipy_glossary( $atts ) {
     $q = new WP_Query( $args );
     while ( $q->have_posts() ) {
         $q->the_post();
-	$my_char = strtoupper( mb_substr( get_the_title(), 0, 1, 'utf-8' ) );
+	$my_char = get_first_letter( get_the_title() );
         if ( empty( $chars_count[$my_char] ) ) {
             $chars_count[$my_char] = 0;
         }
@@ -134,7 +143,7 @@ function custom_tooltipy_glossary( $atts ) {
     while ( $q->have_posts() ) {
         $q->the_post();
         $post_title = get_the_title();
-        if ( $chosen_letter == null or strtoupper( mb_substr( $post_title, 0, 1, 'utf-8' ) ) == $chosen_letter ) {
+        if ( $chosen_letter == null or get_first_letter( $post_title ) == $chosen_letter ) {
             $post_id = get_the_ID();
             $slug = get_post_field( 'post_name' );
 
