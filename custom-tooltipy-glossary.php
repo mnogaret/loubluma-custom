@@ -27,13 +27,12 @@ add_action( 'init', function() {
     );
 });
 
-function get_first_letter( $str, $custom ) {
+function get_first_letter( $post_id ) {
+    $custom = get_post_meta( $post_id, 'custom-index-first-letter', true );
     if ( is_string( $custom ) ) {
         $custom = trim( $custom );
     }
-    if ( ! empty( $custom ) ) {
-        $str = $custom;
-    }
+    $str = empty( $custom ) ? get_the_title( $post_id ) : $custom;
     $first = mb_substr( $str, 0, 1, 'UTF-8' );
     $ascii = iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $first );
     if ( $ascii === false ) {
@@ -105,14 +104,13 @@ function custom_tooltipy_glossary( $atts ) {
     $q = new WP_Query( $args );
     while ( $q->have_posts() ) {
         $q->the_post();
-        $post_id = get_the_ID();
-        $custom_index_first_letter = get_post_meta( $post_id, 'custom-index-first-letter', true );
-        $my_char = get_first_letter( get_the_title(), $custom_index_first_letter );
+        $my_char = get_first_letter( get_the_ID() );
         if ( empty( $chars_count[$my_char] ) ) {
             $chars_count[$my_char] = 0;
         }
         $chars_count[$my_char]++;
     }
+    ksort( $chars_count );
     wp_reset_postdata();
 
     foreach ( $chars_count as $my_char => $nb ) {
@@ -155,8 +153,7 @@ function custom_tooltipy_glossary( $atts ) {
                 $q->the_post();
                 $post_id = get_the_ID();
                 $post_title = get_the_title();
-                $custom_index_first_letter = get_post_meta( $post_id, 'custom-index-first-letter', true );
-                $first_letter = get_first_letter( $post_title, $custom_index_first_letter );
+                $first_letter = get_first_letter( $post_id );
                 if ( $first_letter == $current_letter ) {
                     $slug = get_post_field( 'post_name' );
 
