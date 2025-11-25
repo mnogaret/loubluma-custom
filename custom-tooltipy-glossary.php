@@ -27,7 +27,13 @@ add_action( 'init', function() {
     );
 });
 
-function get_first_letter( $str ) {
+function get_first_letter( $str, $custom ) {
+    if ( is_string( $custom ) ) {
+        $custom = trim( $custom );
+    }
+    if ( ! empty( $custom ) ) {
+        $str = $custom;
+    }
     $first = mb_substr( $str, 0, 1, 'UTF-8' );
     $ascii = iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $first );
     if ( $ascii === false ) {
@@ -99,7 +105,9 @@ function custom_tooltipy_glossary( $atts ) {
     $q = new WP_Query( $args );
     while ( $q->have_posts() ) {
         $q->the_post();
-	$my_char = get_first_letter( get_the_title() );
+        $post_id = get_the_ID();
+        $custom_index_first_letter = get_post_meta( $post_id, 'custom-index-first-letter', true );
+        $my_char = get_first_letter( get_the_title(), $custom_index_first_letter );
         if ( empty( $chars_count[$my_char] ) ) {
             $chars_count[$my_char] = 0;
         }
@@ -143,14 +151,15 @@ function custom_tooltipy_glossary( $atts ) {
     $previous_letter = null;
     while ( $q->have_posts() ) {
         $q->the_post();
+        $post_id = get_the_ID();
         $post_title = get_the_title();
-        $current_letter = get_first_letter( $post_title );
+        $custom_index_first_letter = get_post_meta( $post_id, 'custom-index-first-letter', true );
+        $current_letter = get_first_letter( $post_title, $custom_index_first_letter );
         if ( $chosen_letter == null or $current_letter == $chosen_letter ) {
             if ( $current_letter !== $previous_letter ) {
                 echo '<h1>— ' . $current_letter . ' —</h1>';
                 $previous_letter = $current_letter;
             }
-            $post_id = get_the_ID();
             $slug = get_post_field( 'post_name' );
 
             echo '<dt id="glossary-' . esc_attr( $slug ) . '">';
