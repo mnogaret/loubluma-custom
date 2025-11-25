@@ -154,7 +154,7 @@ function custom_tooltipy_glossary( $atts ) {
 
         // Spécifique loubluma, à rendre générique éventuellement...
         if ( $letter === 'V' ) {
-            echo '<p><small>Selon mon parti pris initial  d’écriture phonétique, ces mots devraient être avec les «&nbsp;B&nbsp;»… mais pauvre «&nbsp;V&nbsp;»&nbsp;!</small></p>';
+            echo '<p><small><strong><em>Selon mon parti pris initial  d’écriture phonétique, ces mots devraient être avec les «&nbsp;B&nbsp;»… mais pauvre «&nbsp;V&nbsp;»&nbsp;!</em></strong></small></p>';
         }
 
         foreach ( $posts as $post_id ) {
