@@ -37,7 +37,7 @@ add_action('wp_footer', function () {
   <?php
 });
 
-function custom_loubluma_help( $atts ) {
+function custom_loubluma_help( $atts, $content = null ) {
   $atts = shortcode_atts(
     [
       'show' => 3,
