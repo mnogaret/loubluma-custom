@@ -1,18 +1,4 @@
 <?php
-/**
- * Plugin Name: WP Custom Tooltipy Glossary
- * Description: Custom shortcode for filtering Tooltipy glossary by family/category.
- * Author: Mathieu Nogaret
- * Version: 0.1.0
- */
-
-require __DIR__ . '/functions.php';
-
-// Exit if accessed directly
-if ( ! defined( 'ABSPATH' ) ) {
-    exit;
-}
-
 add_action( 'init', function() {
     register_taxonomy(
         'tooltipy_category',
