@@ -25,6 +25,8 @@ add_action('wp_footer', function () {
   ?>
   <script>
     (function () {
+      if (window.innerWidth > 768) return;
+
       const banner = document.getElementById('bleymard-help-banner');
       const closeBtn = document.getElementById('bleymard-help-close');
 
