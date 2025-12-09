@@ -35,6 +35,10 @@ add_action('wp_footer', function () {
       const mobileHeader = document.getElementById('ast-mobile-header');
       const button = mobileHeader.getElementsByClassName('.main-header-menu-toggle')[0];
 
+      console.log(banner);
+      console.log(mobileHeader);
+      console.log(button);
+
       if (!banner || !mobileHeader || !button) return;
 
       mobileHeader.appendChild(banner);
