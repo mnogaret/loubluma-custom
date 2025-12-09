@@ -36,9 +36,9 @@ add_action('wp_footer', function () {
 
       if (!banner || !mobileHeader) return;
 
-      const mobileHeaderVisible = window.getComputedStyle( mobileHeader ).display !== 'none';
+//      const mobileHeaderVisible = window.getComputedStyle( mobileHeader ).display !== 'none';
 
-      if (!mobileHeaderVisible) return;
+//      if (!mobileHeaderVisible) return;
 
       mobileHeader.appendChild(banner);
       banner.id = 'bleymard-help-banner';
