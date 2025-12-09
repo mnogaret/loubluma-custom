@@ -33,7 +33,7 @@ add_action('wp_footer', function () {
     (function () {
       const banner = document.getElementById('temp-bleymard-help-banner');
       const mobileHeader = document.getElementById('ast-mobile-header');
-      const button = mobileHeader.getElementsByClassName('.main-header-menu-toggle')[0];
+      const button = mobileHeader.getElementsByClassName('main-header-menu-toggle')[0];
 
       console.log(banner);
       console.log(mobileHeader);
