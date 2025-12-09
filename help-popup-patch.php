@@ -31,32 +31,45 @@ add_action('wp_footer', function () {
   ?>
   <script>
     (function () {
-      const banner = document.getElementById('temp-bleymard-help-banner');
-      const mobileHeader = document.getElementById('ast-mobile-header');
-      const button = mobileHeader.getElementsByClassName('main-header-menu-toggle')[0];
 
-      console.log(banner);
-      console.log(mobileHeader);
-      console.log(button);
+      function initHelpBanner( firstTime = false ) {
 
-      if (!banner || !mobileHeader) return;
+        const banner = document.getElementById('temp-bleymard-help-banner');
+        const mobileHeader = document.getElementById('ast-mobile-header');
+        const button = mobileHeader.querySelector('.main-header-menu-toggle');
 
-      mobileHeader.appendChild(banner);
-      banner.id = 'bleymard-help-banner';
+        console.log(banner);
+        console.log(mobileHeader);
+        console.log(button);
 
-      const hideDelay = parseInt(banner.dataset.hide || '10000', 10);
+        if (!banner || !mobileHeader || !button) {
+          if ( firstTime ) {
+            setTimeout( () => {
+              initHelpBanner();
+            }, 1000 );
+          }
+          return;
+        }
 
-      banner.addEventListener('click', () => {
-        banner.style.display = 'none';
-      });
+        mobileHeader.appendChild(banner);
+        banner.id = 'bleymard-help-banner';
 
-      button.addEventListener('click', () => {
-        banner.style.display = 'none';
-      });
+        const hideDelay = parseInt(banner.dataset.hide || '10000', 10);
 
-      setTimeout(() => {
-        banner.style.display = 'none';
-      }, hideDelay);
+        banner.addEventListener('click', () => {
+          banner.style.display = 'none';
+        });
+
+        button.addEventListener('click', () => {
+          banner.style.display = 'none';
+        });
+
+        setTimeout(() => {
+          banner.style.display = 'none';
+        }, hideDelay);
+      }
+
+      initHelpBanner( true );
 
     })();
   </script>
