@@ -52,6 +52,7 @@ add_action('wp_footer', function () {
 
         mobileHeader.appendChild(banner);
         banner.id = 'bleymard-help-banner';
+        banner.offsetHeight; // force le recalcul des styles (hack mobile)
 
         const hideDelay = parseInt(banner.dataset.hide || '10000', 10);
 
