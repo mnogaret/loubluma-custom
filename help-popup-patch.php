@@ -1,6 +1,10 @@
 <?php
 
+$GLOBALS['loubluma_help_used'] = false;
+
 function custom_loubluma_help( $atts, $content = null ) {
+  $GLOBALS['loubluma_help_used'] = true;
+
   $atts = shortcode_atts(
     [
       'hide' => 15
@@ -11,9 +15,9 @@ function custom_loubluma_help( $atts, $content = null ) {
 
   ob_start();
   ?>
-  <div id="bleymard-help-banner" data-hide="<?php echo $hide; ?>">
+  <div id="temp-bleymard-help-banner" data-hide="<?php echo $hide; ?>">
     <?php echo wp_kses_post($content); ?>
-    <span id="bleymard-help-close">✖</span>
+    <span class="bleymard-help-close">✖</span>
   </div>
   <?php
   return ob_get_clean();
@@ -22,25 +26,33 @@ function custom_loubluma_help( $atts, $content = null ) {
 add_shortcode( 'custom_loubluma_help', 'custom_loubluma_help' );
 
 add_action('wp_footer', function () {
+  if ( empty($GLOBALS['loubluma_help_used']) ) return;
+
   ?>
   <script>
     (function () {
-      if (window.innerWidth > 768) return;
+      const banner = document.getElementById('temp-bleymard-help-banner');
+      const mobileHeader = document.getElementById('ast-mobile-header');
 
-      const banner = document.getElementById('bleymard-help-banner');
-      const closeBtn = document.getElementById('bleymard-help-close');
+      if (!banner || !mobileHeader) return;
 
-      if (!banner || !closeBtn) return;
+      const mobileHeaderVisible = window.getComputedStyle( mobileHeader ).display !== 'none';
 
-      const hideDelay = parseInt(banner.dataset.hide || '15000', 10);
+      if (!mobileHeaderVisible) return;
 
-      closeBtn.addEventListener('click', () => {
+      mobileHeader.appendChild(banner);
+      banner.id = 'bleymard-help-banner';
+
+      const hideDelay = parseInt(banner.dataset.hide || '10000', 10);
+
+      banner.addEventListener('click', () => {
         banner.style.display = 'none';
       });
 
       setTimeout(() => {
         banner.style.display = 'none';
       }, hideDelay);
+
     })();
   </script>
   <?php
