@@ -33,12 +33,9 @@ add_action('wp_footer', function () {
     (function () {
       const banner = document.getElementById('temp-bleymard-help-banner');
       const mobileHeader = document.getElementById('ast-mobile-header');
+      const button = mobileHeader.getElement('main-header-menu-toggle');
 
       if (!banner || !mobileHeader) return;
-
-//      const mobileHeaderVisible = window.getComputedStyle( mobileHeader ).display !== 'none';
-
-//      if (!mobileHeaderVisible) return;
 
       mobileHeader.appendChild(banner);
       banner.id = 'bleymard-help-banner';
@@ -46,6 +43,10 @@ add_action('wp_footer', function () {
       const hideDelay = parseInt(banner.dataset.hide || '10000', 10);
 
       banner.addEventListener('click', () => {
+        banner.style.display = 'none';
+      });
+
+      button.addEventListener('click', () => {
         banner.style.display = 'none';
       });
 
