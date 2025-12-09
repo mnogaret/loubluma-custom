@@ -17,7 +17,6 @@ function custom_loubluma_help( $atts, $content = null ) {
   ?>
   <div id="temp-bleymard-help-banner" data-hide="<?php echo $hide; ?>">
     <?php echo wp_kses_post($content); ?>
-    <span class="bleymard-help-close">✖</span>
   </div>
   <?php
   return ob_get_clean();
