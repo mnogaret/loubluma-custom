@@ -100,7 +100,7 @@ function custom_tooltipy_glossary( $atts ) {
 
     // Construction des lettres
     $link_to_all = esc_url( add_query_arg( 'letter', 'ALL', $permalink ) );
-    echo "<div class=\"kttg_glossary_header\"><span class=\"bluet_glossary_all {$current_letter_class}\"><a href='{$link_to_all}'>" . esc_html( $text_all ) . "</a></span> - ";
+    echo "<div class=\"kttg_glossary_header\"><span class=\"bluet_glossary_letter {$current_letter_class}\"><a href='{$link_to_all}'>" . esc_html( $text_all ) . "</a></span> – ";
 
     $posts_by_letter = [];
     while ( $q->have_posts() ) {
