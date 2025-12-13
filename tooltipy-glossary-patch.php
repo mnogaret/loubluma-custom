@@ -65,7 +65,7 @@ function custom_tooltipy_glossary( $atts ) {
     if ( !empty ( $_GET['letter'] ) and $_GET['letter'] ) {
         $chosen_letter = sanitize_text_field( $_GET["letter"] );
     }
-    if ( $chosen_letter == null ) {
+    if ( $chosen_letter === 'ALL' ) {
         $current_letter_class = 'bluet_glossary_current_letter';
     }
 
@@ -99,7 +99,8 @@ function custom_tooltipy_glossary( $atts ) {
     }
 
     // Construction des lettres
-    echo '<div class="kttg_glossary_header"><span class="bluet_glossary_all ' . $current_letter_class . '"><a href=\'' . $permalink . '\'>' . $text_all . '</a></span> - ';
+    $link_to_all = esc_url( add_query_arg( 'letter', 'ALL', $permalink ) );
+    echo "<div class=\"kttg_glossary_header\"><span class=\"bluet_glossary_all {$current_letter_class}\"><a href='{$link_to_all}'>" . esc_html( $text_all ) . "</a></span> - ";
 
     $posts_by_letter = [];
     while ( $q->have_posts() ) {
@@ -130,7 +131,7 @@ function custom_tooltipy_glossary( $atts ) {
     echo '<dl class="wp-custom-tooltipy-glossary">';
 
     foreach ( $posts_by_letter as $letter => $posts ) {
-        if ( $chosen_letter !== null && $letter !== $chosen_letter ) {
+        if ( $chosen_letter !== 'ALL' && $letter !== $chosen_letter ) {
             continue;
         }
         echo '<h1>— ' . $letter . ' —</h1>';
