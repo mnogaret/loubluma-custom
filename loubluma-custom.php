@@ -14,3 +14,9 @@ add_filter( 'astra_tablet_breakpoint', function () {
     return 1080;
 });
 
+// Ne garder que les pages dans le sitemap (retire posts + CPT).
+add_filter('wp_sitemaps_post_types', function ($post_types) {
+    return [
+        'page' => $post_types['page'],
+    ];
+});
