@@ -24,4 +24,9 @@ add_filter('wp_sitemaps_taxonomies', function ($taxonomies) {
     return [];
 });
 add_filter('wp_sitemaps_users', '__return_empty_array');
+add_filter('wp_sitemaps_providers', function ($providers) {
+    // Ne garder que le provider "posts" (qui contiendra uniquement 'page' grâce à ton filtre wp_sitemaps_post_types).
+    return array_intersect_key($providers, ['posts' => true]);
+});
+
 
