@@ -23,7 +23,5 @@ add_filter('wp_sitemaps_post_types', function ($post_types) {
 add_filter('wp_sitemaps_taxonomies', function ($taxonomies) {
     return [];
 });
-add_filter('wp_sitemaps_users', function ($taxonomies) {
-    return [];
-});
+add_filter('wp_sitemaps_users', '__return_empty_array');
 
