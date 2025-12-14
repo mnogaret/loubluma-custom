@@ -14,9 +14,16 @@ add_filter( 'astra_tablet_breakpoint', function () {
     return 1080;
 });
 
-// Ne garder que les pages dans le sitemap (retire posts + CPT).
+// Ne garder que les pages dans le sitemap (retire posts + CPT + taxonomies + users).
 add_filter('wp_sitemaps_post_types', function ($post_types) {
     return [
         'page' => $post_types['page'],
     ];
 });
+add_filter('wp_sitemaps_taxonomies', function ($taxonomies) {
+    return [];
+});
+add_filter('wp_sitemaps_users', function ($taxonomies) {
+    return [];
+});
+
